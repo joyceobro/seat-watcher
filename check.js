@@ -30,7 +30,7 @@ async function sendTelegram(message) {
   console.log("isFull:", isFull);
 
   // 만석이 아니면(자리 났으면) 알림
-  if (isFull) {
+  if (!isFull) {
     await sendTelegram("🎉 자리 났습니다! 지금 바로 신청하세요 👇\n" + TARGET_URL);
     console.log("알림 발송!");
   }
