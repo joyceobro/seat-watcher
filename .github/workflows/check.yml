@@ -1,0 +1,27 @@
+name: Seat Watcher
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # 5분마다
+  workflow_dispatch:          # 수동 실행 버튼
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        run: |
+          npm install playwright
+          npx playwright install chromium
+
+      - name: Run check
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: node check.js
