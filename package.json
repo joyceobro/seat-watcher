@@ -1,0 +1,6 @@
+{
+  "name": "seat-watcher",
+  "dependencies": {
+    "playwright": "latest"
+  }
+}
